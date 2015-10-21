@@ -27,14 +27,14 @@
 
 namespace Presta\Cache\Adapter;
 
-use Presta\Cache\Cache;
+use Presta\Cache\CacheCore;
 
 /**
  * This class require Xcache extension
  *
  * @since 1.5.0
  */
-class Xcache extends Cache {
+class Xcache extends CacheCore {
 
     public function __construct() {
         $this->keys = xcache_get(self::KEYS_NAME);

@@ -99,7 +99,7 @@ class PDO extends DbCore {
      */
     public function connect() {
         try {
-            $this->link = $this->_getPDO($this->server, $this->user, $this->password, $this->database, 5);
+            $this->link = self::_getPDO($this->server, $this->user, $this->password, $this->database, 5);
         } catch (\PDOException $e) {
             die(sprintf('Link to database cannot be established: %s', utf8_encode($e->getMessage())));
         }
@@ -148,7 +148,7 @@ class PDO extends DbCore {
             return false;
         }
 
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -167,7 +167,7 @@ class PDO extends DbCore {
             return false;
         }
 
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**
@@ -255,7 +255,7 @@ class PDO extends DbCore {
      * @return int
      */
     public function set_db($db_name) {
-        return $this->link->exec('USE ' . pSQL($db_name));
+        return $this->link->exec('USE ' . $this->escape($db_name));
     }
 
     /**

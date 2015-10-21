@@ -27,14 +27,14 @@
 
 namespace Presta\Cache\Adapter;
 
-use Presta\Cache\Cache;
+use Presta\Cache\CacheCore;
 
 /**
  * This class require PECL APC extension
  *
  * @since 1.5.0
  */
-class Apc extends Cache {
+class Apc extends CacheCore {
 
     public function __construct() {
         if (!function_exists('apc_exists')) {

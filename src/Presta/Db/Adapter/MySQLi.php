@@ -256,7 +256,7 @@ class MySQLi extends DbCore
      */
     public function set_db($db_name)
     {
-        return $this->link->query('USE `'.bqSQL($db_name).'`');
+        return $this->link->query('USE `'.$this->escape($db_name, false, true).'`');
     }
 
     /**

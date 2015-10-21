@@ -24,10 +24,12 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
+namespace Presta\Db\Adapter;
+
 /**
  * Class MySQLCore
  */
-class MySQLCore extends DbCore
+class MySQL extends DbCore
 {
     /** @var resource */
     protected $link;
@@ -49,16 +51,16 @@ class MySQLCore extends DbCore
         }
 
         if (!$this->link = mysql_connect($this->server, $this->user, $this->password)) {
-            throw new PrestaShopDatabaseException(Tools::displayError('Link to database cannot be established.'));
+            throw new \Presta\Db\Exception('Link to database cannot be established.');
         }
 
         if (!$this->set_db($this->database)) {
-            throw new PrestaShopDatabaseException(Tools::displayError('The database selection cannot be made.'));
+            throw new \Presta\Db\Exception('The database selection cannot be made.');
         }
 
         // UTF-8 support
         if (!mysql_query('SET NAMES \'utf8\'', $this->link)) {
-            throw new PrestaShopDatabaseException(Tools::displayError('PrestaShop Fatal error: no utf-8 support. Please check your server configuration.'));
+            throw new \Presta\Db\Exception('PrestaShop Fatal error: no utf-8 support. Please check your server configuration.');
         }
 
         return $this->link;

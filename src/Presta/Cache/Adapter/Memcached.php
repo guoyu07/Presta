@@ -31,9 +31,9 @@
 
 namespace Presta\Cache\Adapter;
 
-use Presta\Cache\Cache;
+use Presta\Cache\CacheCore;
 
-class Memcached extends Cache {
+class Memcached extends CacheCore {
 
     /**
      * @var Memcached

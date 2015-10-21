@@ -376,7 +376,7 @@ abstract class DbCore {
                         throw new Exception('On duplicate key cannot be used on insert with more than 1 VALUE group');
                     }
                 } else {
-                    $keys[] = '`' . bqSQL($key) . '`';
+                    $keys[] = '`' . $this->escape($key, false, true) . '`';
                 }
 
                 if (!is_array($value)) {
@@ -389,7 +389,7 @@ abstract class DbCore {
                 }
 
                 if ($type == self::ON_DUPLICATE_KEY) {
-                    $duplicate_key_stringified .= '`' . bqSQL($key) . '` = ' . $string_value . ',';
+                    $duplicate_key_stringified .= '`' . $this->escape($key, false, true) . '` = ' . $string_value . ',';
                 }
             }
             $first_loop = false;
@@ -426,15 +426,15 @@ abstract class DbCore {
             $table = _DB_PREFIX_ . $table;
         }
 
-        $sql = 'UPDATE `' . bqSQL($table) . '` SET ';
+        $sql = 'UPDATE `' . $this->escape($table, false, true) . '` SET ';
         foreach ($data as $key => $value) {
             if (!is_array($value)) {
                 $value = array('type' => 'text', 'value' => $value);
             }
             if ($value['type'] == 'sql') {
-                $sql .= '`' . bqSQL($key) . "` = {$value['value']},";
+                $sql .= '`' . $this->escape($key, false, true) . "` = {$value['value']},";
             } else {
-                $sql .= ($null_values && ($value['value'] === '' || is_null($value['value']))) ? '`' . bqSQL($key) . '` = NULL,' : '`' . bqSQL($key) . "` = '{$value['value']}',";
+                $sql .= ($null_values && ($value['value'] === '' || is_null($value['value']))) ? '`' . $this->escape($key, false, true) . '` = NULL,' : '`' . $this->escape($key, false, true) . "` = '{$value['value']}',";
             }
         }
 
@@ -465,7 +465,7 @@ abstract class DbCore {
         }
 
         $this->result = false;
-        $sql = 'DELETE FROM `' . bqSQL($table) . '`' . ($where ? ' WHERE ' . $where : '') . ($limit ? ' LIMIT ' . (int) $limit : '');
+        $sql = 'DELETE FROM `' . $this->escape($table, false, true) . '`' . ($where ? ' WHERE ' . $where : '') . ($limit ? ' LIMIT ' . (int) $limit : '');
         $res = $this->query($sql);
         if ($use_cache && $this->is_cache_enabled) {
             \Presta\Cache::getInstance()->deleteQuery($sql);

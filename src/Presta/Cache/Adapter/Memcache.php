@@ -27,13 +27,13 @@
 
 namespace Presta\Cache\Adapter;
 
-use Presta\Cache\Cache;
+use Presta\Cache\CacheCore;
 
 /**
  * This class require PECL Memcache extension
  *
  */
-class Memcache extends Cache {
+class Memcache extends CacheCore {
 
     /**
      * @var Memcache

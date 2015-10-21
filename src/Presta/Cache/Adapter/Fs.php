@@ -27,9 +27,9 @@
 
 namespace Presta\Cache\Adapter;
 
-use Presta\Cache\Cache;
+use Presta\Cache\CacheCore;
 
-class Fs extends Cache {
+class Fs extends CacheCore {
 
     /**
      * @var int Number of subfolders to dispatch cached filenames
