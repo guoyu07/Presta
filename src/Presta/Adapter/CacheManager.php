@@ -35,7 +35,7 @@ class CacheManager {
      * @param $key
      */
     public function clean($key) {
-        \Presta\Cache\Cache::clean($key);
+        \Presta\Cache::clean($key);
     }
 
 }

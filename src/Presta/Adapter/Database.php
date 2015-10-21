@@ -28,6 +28,7 @@
 namespace Presta\Adapter;
 
 use Presta\Foundation\Database\DatabaseInterface;
+use Presta\Db;
 
 class Database implements DatabaseInterface {
 
