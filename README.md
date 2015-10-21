@@ -1,5 +1,5 @@
 # Presta
-从PrestaShop中剥离的框架
+从PrestaShop中剥离的PHP框架
 
 特性清单：
 
