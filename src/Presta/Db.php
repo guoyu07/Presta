@@ -19,7 +19,7 @@ class Db {
      * Returns database object instance.
      *
      * @param bool $master Decides whether the connection to be returned by the master server or the slave server
-     * @return Db Singleton instance of Db object
+     * @return \Presta\Db\DbCore Db Singleton instance of Db object
      */
     public static function getInstance($master = true) {
         static $id = 0;
