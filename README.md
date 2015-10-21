@@ -5,3 +5,7 @@
 
   * IoC容器
   * DataMapper ORM封装
+
+运行环境：
+
+  PHP >= 5.3
